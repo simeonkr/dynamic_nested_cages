@@ -54,9 +54,9 @@ void extrap_cage(
         else {
           Eigen::RowVector3d n1 = coarse_point - V1.row(vi);
           Eigen::RowVector3d n2 = N2.row(vi) * n1.norm();
-          V2_C_inc.row(coarse_face[0]) += l[0] * (V2.row(vi) + n2 - V1_C.row(coarse_face[0]));
-          V2_C_inc.row(coarse_face[1]) += l[1] * (V2.row(vi) + n2 - V1_C.row(coarse_face[1]));
-          V2_C_inc.row(coarse_face[2]) += l[2] * (V2.row(vi) + n2 - V1_C.row(coarse_face[2]));
+          V2_C_inc.row(coarse_face[0]) += l[0] * (V2.row(vi) + n2 - V1_C.row(coarse_face[0]) - n1);
+          V2_C_inc.row(coarse_face[1]) += l[1] * (V2.row(vi) + n2 - V1_C.row(coarse_face[1]) - n1);
+          V2_C_inc.row(coarse_face[2]) += l[2] * (V2.row(vi) + n2 - V1_C.row(coarse_face[2]) - n1);
         }
         
         total_vertex_weights[coarse_face[0]] += l[0];
